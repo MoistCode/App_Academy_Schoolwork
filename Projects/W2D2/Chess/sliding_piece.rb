@@ -1,5 +1,7 @@
 require_relative "piece"
 
-class SlidingPiece < Piece
 
+class SlidingPiece
+  include Piece
+  include Singleton
 end

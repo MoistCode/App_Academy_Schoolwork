@@ -1,4 +1,6 @@
 require_relative "piece"
 
-class Pawns < Piece
+class Pawns
+  include Piece
+  include Singleton
 end

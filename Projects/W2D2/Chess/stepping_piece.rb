@@ -1,4 +1,6 @@
 require_relative "piece"
 
-class SteppingPiece < Piece
+class SteppingPiece
+  include Piece
+  include Singleton
 end

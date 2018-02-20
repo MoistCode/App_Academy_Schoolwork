@@ -1,4 +1,6 @@
 require_relative "piece"
 
-class NullPiece < Piece
+class NullPiece
+  include Piece
+  include Singleton
 end
