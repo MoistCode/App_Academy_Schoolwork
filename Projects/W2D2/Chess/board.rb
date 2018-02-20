@@ -3,10 +3,11 @@ require_relative 'sliding_piece'
 require_relative 'null_piece'
 require_relative 'pawns'
 require_relative 'stepping_piece'
+require_relative 'display'
 
 class Board
 
-  attr_reader :chess_board, :
+  attr_reader :chess_board, :display
 
   def initialize
     @chess_board = Array.new(8){Array.new(8)}

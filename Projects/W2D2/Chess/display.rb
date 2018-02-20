@@ -8,6 +8,6 @@ class Display
   end
 
   def render
-    #dshow board
+    @cursor.get_input
   end
 end

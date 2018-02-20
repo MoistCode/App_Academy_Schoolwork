@@ -1,5 +1,5 @@
 require "io/console"
-
+require_relative "board"
 KEYMAP = {
   " " => :space,
   "h" => :left,
@@ -37,13 +37,39 @@ class Cursor
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
     @board = board
+
   end
 
   def get_input
-    key = KEYMAP[read_char]
-    handle_key(key)
+    begin
+      key = "placeholder"
+      until key == :return || key == :newline
+        system("clear")
+        render_board
+        key = KEYMAP[read_char]
+        handle_key(key)
+        return @cursor_pos unless [:left, :right, :up, :down].include?(key)
+      end
+    rescue OutOfRangeError => e
+      e.message
+      retry
+    end
   end
 
+  def render_board
+    8.times do |i|
+      8.times do |j|
+        if [i,j] == @cursor_pos
+          print @board[i][j].to_s.colorize(:blue) if j < 7
+          puts @board[i][j].to_s.colorize(:blue) if j == 7
+        elsif j == 7
+          puts @board[i][j]
+        else
+          print @board[i][j]
+        end
+      end
+    end
+  end
   private
 
   def read_char
@@ -77,10 +103,14 @@ class Cursor
 
   def handle_key(key)
     case key
-    when
-    new_pos = @cursor_pos.first + MOVES[key].first , @cursor_pos.last + MOVES[key].last
+    when :left, :right, :up, :down
+      new_pos = [@cursor_pos.first + MOVES[key].first , @cursor_pos.last + MOVES[key].last]
+      raise OutOfRangeError unless new_pos.all? {|n| n.between?(0,7)}
+      update_pos(new_pos)
+    end
   end
 
   def update_pos(diff)
+    @cursor_pos = diff
   end
 end
