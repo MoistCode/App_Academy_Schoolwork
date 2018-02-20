@@ -40,28 +40,29 @@ class Cursor
 
   end
 
-  def get_input
+  def get_input(color)
     begin
       key = "placeholder"
       until key == :return || key == :newline
         system("clear")
-        render_board
+        render_board(color)
         key = KEYMAP[read_char]
         handle_key(key)
         return @cursor_pos unless [:left, :right, :up, :down].include?(key)
       end
     rescue OutOfRangeError => e
       e.message
+      sleep(2)
       retry
     end
   end
 
-  def render_board
+  def render_board(color)
     8.times do |i|
       8.times do |j|
         if [i,j] == @cursor_pos
-          print @board[i][j].to_s.colorize(:blue) if j < 7
-          puts @board[i][j].to_s.colorize(:blue) if j == 7
+          print @board[i][j].to_s.colorize(color) if j < 7
+          puts @board[i][j].to_s.colorize(color) if j == 7
         elsif j == 7
           puts @board[i][j]
         else

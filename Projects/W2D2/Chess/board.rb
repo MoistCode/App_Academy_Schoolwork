@@ -32,6 +32,10 @@ class Board
         end
       elsif idx1 == 0 || idx1 == 7
         @chess_board[idx1] = @starting_board.dup
+      else
+        8.times do |i|
+          @chess_board[idx1][i] = :X
+        end
       end
     end
   end
@@ -69,7 +73,7 @@ class Board
     starting_x, starting_y = start_pos
     ending_x, ending_y = end_pos
     self[ending_x, ending_y] = self[starting_x, starting_y]
-    self[starting_x, starting_y] = nil
+    self[starting_x, starting_y] = :X
   end
 
 
@@ -77,18 +81,21 @@ class Board
     starting_x, starting_y = start_pos
     ending_x, ending_y = end_pos
     begin
-      raise OutOfRangeError unless (start_pos + end_pos).all?{|el| el.between?(0,7)}
-      raise NoPieceError if self[starting_x, starting_y] == nil
+      # raise OutOfRangeError unless (start_pos + end_pos).all?{|el| el.between?(0,7)}
+      raise NoPieceError if self[starting_x, starting_y] == :X
       raise SamePositionError if start_pos == end_pos
     rescue => e
       puts e.message
+      sleep(2)
       return false
     end
     true
   end
 
   def prompt_user
-
+    start_pos, end_pos = @display.render
+    prompt_user unless valid_play?(start_pos, end_pos)
+    move_piece(start_pos, end_pos)
   end
 end
 

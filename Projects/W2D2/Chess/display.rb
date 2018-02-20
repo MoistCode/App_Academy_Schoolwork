@@ -8,6 +8,8 @@ class Display
   end
 
   def render
-    @cursor.get_input
+    start_pos = @cursor.get_input(:blue)
+    end_pos = @cursor.get_input(:red)
+    [start_pos, end_pos]
   end
 end
