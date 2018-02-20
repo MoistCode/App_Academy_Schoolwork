@@ -3,11 +3,10 @@ require_relative 'sliding_piece'
 require_relative 'null_piece'
 require_relative 'pawns'
 require_relative 'stepping_piece'
-require 'singleton'
 
 class Board
 
-  attr_reader :chess_board
+  attr_reader :chess_board, :
 
   def initialize
     @chess_board = Array.new(8){Array.new(8)}
@@ -21,6 +20,7 @@ class Board
                         :rook]
     generate_new_board
     create_instances
+    @display = Display.new(self.chess_board)
   end
 
   def generate_new_board
@@ -40,11 +40,14 @@ class Board
       8.times do |j|
           case @chess_board[i][j]
           when :rook, :bishop, :queen
-            SlidingPiece.instance
+            puts "Creating new slide piece"
+            SlidingPiece.new
           when :knight, :king
-            SteppingPiece.instance
+            puts "Creating new stepping piece"
+            SteppingPiece.new
           when :pawn
-            Pawn.instance
+            puts "Creating new pawn"
+            Pawns.new
           end
       end
 

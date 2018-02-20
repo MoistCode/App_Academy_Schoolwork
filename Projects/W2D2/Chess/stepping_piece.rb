@@ -1,6 +1,7 @@
 require_relative "piece"
+module Stepable
 
+end
 class SteppingPiece
-  include Piece
-  include Singleton
+  include Stepable
 end

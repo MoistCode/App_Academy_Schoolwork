@@ -1,4 +1,4 @@
 
+class Piece
 
-module Piece
 end

@@ -1,7 +1,8 @@
 require_relative "piece"
 
+module Slidable
 
+end
 class SlidingPiece
-  include Piece
-  include Singleton
+  include Slidable
 end

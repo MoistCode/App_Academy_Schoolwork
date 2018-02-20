@@ -1,6 +1,7 @@
 require_relative "piece"
+module Changable
 
+end
 class Pawns
-  include Piece
-  include Singleton
+  include Changable
 end
