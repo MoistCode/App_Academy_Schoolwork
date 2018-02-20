@@ -5,7 +5,4 @@ module Piece
     @color = color
   end
 
-  def move(start_pos, end_pos)
-
-  end
 end
