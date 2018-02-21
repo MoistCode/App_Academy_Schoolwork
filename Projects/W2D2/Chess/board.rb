@@ -106,7 +106,7 @@ class Board
       counter += 1
       dance2(counter)
       counter += 1
-      counter = 0 if counter == 40
+      counter = 0 if counter == 30
     end
   end
 
@@ -114,9 +114,9 @@ class Board
     system("clear")
     str = ""
     count.times {str += " "}
-    puts "#{str}DANCE PARTY~~ \\(ఠ v ఠ ) ~~DANCE PARTY"
-    puts "#{str}DANCE PARTY~~     |\\    ~~DANCE PARTY"
-    puts "#{str}DANCE PARTY~~    / \\    ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~ \\(ఠ v ఠ ) ( ఠ v ఠ)/ ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~     |\\       /|     ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~    / \\       / \\    ~~DANCE PARTY"
     sleep(0.5)
   end
 
@@ -124,9 +124,9 @@ class Board
     system("clear")
     str = ""
     count.times {str += " "}
-    puts "#{str}DANCE PARTY~~ ( ఠ v ఠ)/ ~~DANCE PARTY"
-    puts "#{str}DANCE PARTY~~    /|     ~~DANCE PARTY"
-    puts "#{str}DANCE PARTY~~    / \\    ~~DANCE PARTY "
+    puts "#{str}DANCE PARTY~~ ( ఠ v ఠ)/ \\(ఠ v ఠ )/ ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~     |\\       /|     ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~    / \\       / \\    ~~DANCE PARTY"
     sleep(0.5)
   end
 end
