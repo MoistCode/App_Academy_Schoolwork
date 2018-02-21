@@ -40,12 +40,12 @@ class Cursor
 
   end
 
-  def get_input(color)
+  def get_input(color, background)
     begin
       key = "placeholder"
       until key == :return || key == :newline
         system("clear")
-        render_board(color)
+        render_board(color, background)
         key = KEYMAP[read_char]
         handle_key(key)
         return @cursor_pos unless [:left, :right, :up, :down].include?(key)
@@ -57,16 +57,30 @@ class Cursor
     end
   end
 
-  def render_board(color)
+  def render_board(color, background)
     8.times do |i|
       8.times do |j|
         if [i,j] == @cursor_pos
-          print @board[i][j].to_s.colorize(color) + " " if j < 7
-          puts @board[i][j].to_s.colorize(color) if j == 7
+          print @board[i][j].to_s.colorize(:color => color, :background => background) + "" if j < 7
+          puts @board[i][j].to_s.colorize(:color => color, :background => background) if j == 7
         elsif j == 7
-          puts @board[i][j]
+          if (i.odd?)
+            puts @board[i][j].to_s.colorize(:color => :red, :background => :white)
+          else
+            puts @board[i][j].to_s
+          end
+        elsif i.odd?
+          if j.odd?
+            print (@board[i][j].to_s + "").colorize(:color => :red, :background => :white)
+          else
+            print (@board[i][j].to_s + "")
+          end
         else
-          print @board[i][j].to_s + " "
+          if (i == 0 || i.even?) && (j == 0 || j.even?)
+            print (@board[i][j].to_s + "").colorize(:color => :red, :background => :white)
+          else
+            print (@board[i][j].to_s + "")
+          end
         end
       end
     end

@@ -100,25 +100,33 @@ class Board
   end
 
   def game_over
+    counter = 0
     loop do
-      dance1
-      dance2
+      dance1(counter)
+      counter += 1
+      dance2(counter)
+      counter += 1
+      counter = 0 if counter == 40
     end
   end
 
-  def dance1
+  def dance1(count)
     system("clear")
-    puts '\(ఠ v ఠ )'
-    puts '    |\  '
-    puts '   / \   '
+    str = ""
+    count.times {str += " "}
+    puts "#{str}DANCE PARTY~~ \\(ఠ v ఠ ) ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~     |\\    ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~    / \\    ~~DANCE PARTY"
     sleep(0.5)
   end
 
-  def dance2
+  def dance2(count)
     system("clear")
-    puts ' ( ఠ v ఠ)/'
-    puts '    /|  '
-    puts '    / \   '
+    str = ""
+    count.times {str += " "}
+    puts "#{str}DANCE PARTY~~ ( ఠ v ఠ)/ ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~    /|     ~~DANCE PARTY"
+    puts "#{str}DANCE PARTY~~    / \\    ~~DANCE PARTY "
     sleep(0.5)
   end
 end

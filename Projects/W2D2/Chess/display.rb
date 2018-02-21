@@ -1,4 +1,5 @@
 require 'colorize'
+require 'rainbow'
 require_relative 'board'
 require_relative 'cursor'
 
@@ -8,8 +9,8 @@ class Display
   end
 
   def render
-    start_pos = @cursor.get_input(:blue)
-    end_pos = @cursor.get_input(:red)
+    start_pos = @cursor.get_input(:blue, :light_green)
+    end_pos = @cursor.get_input(:red, :light_blue)
     [start_pos, end_pos]
   end
 end
