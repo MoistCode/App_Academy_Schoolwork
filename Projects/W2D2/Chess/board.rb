@@ -11,30 +11,31 @@ class Board
 
   def initialize
     @chess_board = Array.new(8){Array.new(8)}
-    @starting_board = [:rook,
-                        :knight,
-                        :bishop,
-                        :queen,
-                        :king,
-                        :bishop,
-                        :knight,
-                        :rook]
+    @starting_board = [:xxROOKx,
+                        :xKNIGHT,
+                        :BISHOPx,
+                        :xQUEENx,
+                        :xxKINGx,
+                        :xBISHOP,
+                        :xKNIGHT,
+                        :xxROOKx]
     generate_new_board
     create_instances
     @display = Display.new(self.chess_board)
+    system("clear")
   end
 
   def generate_new_board
     8.times do |idx1|
       if idx1 == 1 || idx1 == 6
         8.times do |i|
-          @chess_board[idx1][i] = :pawn
+          @chess_board[idx1][i] = :xxPAWNx
         end
       elsif idx1 == 0 || idx1 == 7
         @chess_board[idx1] = @starting_board.dup
       else
         8.times do |i|
-          @chess_board[idx1][i] = :X
+          @chess_board[idx1][i] = "(˘ ³˘)♥"
         end
       end
     end
@@ -73,7 +74,7 @@ class Board
     starting_x, starting_y = start_pos
     ending_x, ending_y = end_pos
     self[ending_x, ending_y] = self[starting_x, starting_y]
-    self[starting_x, starting_y] = :X
+    self[starting_x, starting_y] = "(˘ ³˘)♥"
   end
 
 
@@ -82,11 +83,11 @@ class Board
     ending_x, ending_y = end_pos
     begin
       # raise OutOfRangeError unless (start_pos + end_pos).all?{|el| el.between?(0,7)}
-      raise NoPieceError if self[starting_x, starting_y] == :X
+      raise NoPieceError if self[starting_x, starting_y] == "(˘ ³˘)♥"
       raise SamePositionError if start_pos == end_pos
     rescue => e
       puts e.message
-      sleep(2)
+      sleep(1)
       return false
     end
     true

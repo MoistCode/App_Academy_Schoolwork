@@ -52,7 +52,7 @@ class Cursor
       end
     rescue OutOfRangeError => e
       e.message
-      sleep(2)
+      sleep(1)
       retry
     end
   end
@@ -61,12 +61,12 @@ class Cursor
     8.times do |i|
       8.times do |j|
         if [i,j] == @cursor_pos
-          print @board[i][j].to_s.colorize(color) if j < 7
+          print @board[i][j].to_s.colorize(color) + " " if j < 7
           puts @board[i][j].to_s.colorize(color) if j == 7
         elsif j == 7
           puts @board[i][j]
         else
-          print @board[i][j]
+          print @board[i][j].to_s + " "
         end
       end
     end
