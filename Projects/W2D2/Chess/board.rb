@@ -97,6 +97,29 @@ class Board
     prompt_user unless valid_play?(start_pos, end_pos)
     move_piece(start_pos, end_pos)
   end
+
+  def game_over
+    loop do
+      dance1
+      dance2
+    end
+  end
+
+  def dance1
+    system("clear")
+    puts '\(ఠ v ఠ )'
+    puts '    |\  '
+    puts '   / \   '
+    sleep(0.5)
+  end
+
+  def dance2
+    system("clear")
+    puts ' ( ఠ v ఠ)/'
+    puts '    /|  '
+    puts '    / \   '
+    sleep(0.5)
+  end
 end
 
 class SamePositionError < StandardError
