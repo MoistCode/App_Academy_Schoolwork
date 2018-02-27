@@ -70,36 +70,47 @@ VALUES
 INSERT INTO
   question_follows (question_id, user_id)
 VALUES
-  ((SELECT id FROM questions WHERE title = 'Lost Cow'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Lost Cow'), SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth')),
-  ((SELECT id FROM questions WHERE title = 'Tide Pods'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Tide Pods'), SELECT id FROM users WHERE fname = 'La' AND lname = 'Croix')),
-  ((SELECT id FROM questions WHERE title = 'Concrete Mathematics'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Awesomeness'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Concrete Mathematics'), SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner')),
-  ((SELECT id FROM questions WHERE title = 'Sequal'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Moist Toilet Seat'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
-  ((SELECT id FROM questions WHERE title = 'Moist Toilet Seat'), SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth')),
-  ((SELECT id FROM questions WHERE title = 'Starbucks'), SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'));
+  ((SELECT id FROM questions WHERE title = 'Lost Cow'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Lost Cow'), (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth')),
+  ((SELECT id FROM questions WHERE title = 'Tide Pods'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Tide Pods'), (SELECT id FROM users WHERE fname = 'La' AND lname = 'Croix')),
+  ((SELECT id FROM questions WHERE title = 'Concrete Mathematics'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Awesomeness'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Concrete Mathematics'), (SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner')),
+  ((SELECT id FROM questions WHERE title = 'Sequal'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Moist Toilet Seat'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code')),
+  ((SELECT id FROM questions WHERE title = 'Moist Toilet Seat'), (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth')),
+  ((SELECT id FROM questions WHERE title = 'Starbucks'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'));
 
 INSERT INTO
   replies (body, user_id, question_id)
 VALUES
-  ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', SELECT id FROM users WHERE fname = 'Moist' && lname = 'Code', SELECT id FROM questions WHERE title = 'Moist Toilet Seat'),
-  ('This is digusting, stop doing what you''re doing', SELECT id FROM users WHERE fname = 'Timmy' && lname = 'Turner', SELECT id FROM questions WHERE title = 'Moist Toilet Seat'),
-  ('Please get toilet trained again.', SELECT id FROM users WHERE fname = 'Gayle' && lname = 'Laakmann', SELECT id FROM questions WHERE title = 'Moist Toilet Seat'),
-  ('Just boast about how vegan you are.', SELECT id FROM users WHERE fname = 'Moist' && lname = 'Code', SELECT id FROM questions WHERE title = 'Vegan'),
-  ('This is how humanity will end.', SELECT id FROM users WHERE fname = 'Donald' && lname = 'Knuth', SELECT id FROM questions WHERE title = 'Tide Pods'),
-  ('The better question is when can I not.', SELECT id FROM users WHERE fname = 'Donald' && lname = 'Knuth', SELECT id FROM questions WHERE title = 'Starbucks'),
-  ('Our emojis are comparable to drawings on the wall in primitive times. The future will see this as communication.', SELECT id FROM users WHERE fname = 'Donald' && lname = 'Knuth', SELECT id FROM questions WHERE title = 'Emojis'),
-  ('I wrote this because I''m awesome. Please...someone reply to my question.', SELECT id FROM users WHERE fname = 'Donald' && lname = 'Knuth', SELECT id FROM questions WHERE title = 'Concrete Mathematics'),
-  ('You''re not', SELECT id FROM users WHERE fname = 'Moist' && lname = 'Code', SELECT id FROM questions WHERE title = 'Awesomeness'),
-  ('A tide pod will fix that.', SELECT id FROM users WHERE fname = 'Moist' && lname = 'Code', SELECT id FROM questions WHERE title = 'Clean Code');
+  ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ('This is digusting, stop doing what you''re doing', (SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ('Please get toilet trained again.', (SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ('Just boast about how vegan you are.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Vegan')),
+  ('This is how humanity will end.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ('The better question is when can I not.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Starbucks')),
+  ('Our emojis are comparable to drawings on the wall in primitive times. The future will see this as communication.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Emojis')),
+  ('I wrote this because I''m awesome. Please...someone reply to my question.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Concrete Mathematics')),
+  ('You''re not', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Awesomeness')),
+  ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code'));
 
 INSERT INTO
-
+  question_likes (user_id, question_id)
 VALUES
-
-INSERT INTO
-
-VALUES
+  ((SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ((SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ((SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ((SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ((SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ((SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM questions WHERE title = 'Vegan')),
+  ((SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ((SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Emojis')),
+  ((SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Concrete Mathematics')),
+  ((SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ((SELECT id FROM users WHERE fname = 'Starbucks' AND lname = 'Coffee'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
+  ((SELECT id FROM users WHERE fname = 'Starbucks' AND lname = 'Coffee'), (SELECT id FROM questions WHERE title = 'Starbucks')),
+  ((SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ((SELECT id FROM users WHERE fname = 'Gamma' AND lname = 'Helm'), (SELECT id FROM questions WHERE title = 'Tide Pods')),
+  ((SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Lost Cow'));
