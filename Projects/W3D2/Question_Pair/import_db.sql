@@ -25,7 +25,7 @@ CREATE TABLE replies (
   id INTEGER PRIMARY KEY NOT NULL,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
-  question_id INTEGER NOT NULL,
+  question_id INTEGER,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (question_id) REFERENCES questions(id)
@@ -96,9 +96,14 @@ VALUES
   ('Our emojis are comparable to drawings on the wall in primitive times. The future will see this as communication.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Emojis')),
   ('I wrote this because I''m awesome. Please...someone reply to my question.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Concrete Mathematics')),
   ('You''re not', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Awesomeness')),
-  ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code'));
+  ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code')),
 
   /* These replies are the children of parent replies */
+  ('My man...', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM replies WHERE body LIKE '%firm believer%')),
+  ('LMFAO', (SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM replies WHERE body LIKE '%A tide pod will%')),
+  ('So lonely...', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM replies WHERE body LIKE '%You''re not%')),
+  ('True, true.', (SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM replies WHERE body LIKE '%humanity will%')),
+  ('That''s rude.', (SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM replies WHERE body LIKE '%boast about%'));
 
 INSERT INTO
   question_likes (user_id, question_id)
