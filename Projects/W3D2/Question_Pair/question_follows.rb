@@ -2,6 +2,8 @@ require_relative 'questions'
 
 class QuestionFollowers
 
+  attr_accessor :question_id, :user_id
+
   def self.all
     data = QuestionsDatabase.instance.execute('SELECT * FROM question_follows')
     data.map { |datum| QuestionFollowers.new(datum) }

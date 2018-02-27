@@ -2,6 +2,9 @@ require_relative 'questions'
 
 class QuestionLikes
 
+  attr_accessor :question_id, :user_id
+
+
   def self.all
     data = QuestionsDatabase.instance.execute('SELECT * FROM question_likes')
     data.map { |datum| QuestionLikes.new(datum) }

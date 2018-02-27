@@ -17,6 +17,8 @@ end
 
 class Questions
 
+  attr_accessor :id, :title, :body, :user_id
+
   def self.all
     data = QuestionsDatabase.instance.execute('SELECT * FROM questions')
     data.map { |datum| Questions.new(datum) }
