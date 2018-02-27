@@ -85,7 +85,7 @@ VALUES
   ((SELECT id FROM questions WHERE title = 'Starbucks'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'));
 
 INSERT INTO
-  replies (body, user_id, question_id, parent_reply_id)
+  replies (body, user_id, question_id)
 VALUES
   /* These replies are the parent replies */
   ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),

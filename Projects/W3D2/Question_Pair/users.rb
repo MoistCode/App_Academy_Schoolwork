@@ -49,4 +49,9 @@ class Users
     Replies.find_by_user_id(user_id)
   end
 
+  def followed_questions(user_id)
+    # Find all questions followed by a certain user
+    QuestionFollowers.followed_questions_for_user_id(user_id)
+  end
+
 end

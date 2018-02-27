@@ -55,12 +55,30 @@ class Questions
     @user_id = options['user_id']
   end
 
-  def author
-
+  def author(question_id)
+    # Find the author's first and last name based on question ID
+    data = QuestionsDatabase.instance.execute(<<-SQL, question_id)
+      SELECT
+        users.fname, users.lname
+      FROM
+        questions
+      JOIN
+        users
+        ON questions.user_id = users.id
+      WHERE
+        id = ?
+    SQL
+    data.map { |datum| Questions.new(datum) }
   end
 
-  def replies
+  def replies(question_id)
+    # Find the replies based on the question ID
+    Replies.find_by_question_id(question_id)
+  end
 
+  def followers(question_id)
+    # Find all follows of a certain question
+    QuestionFollowers.followers_for_question_id(question_id)
   end
 
 end

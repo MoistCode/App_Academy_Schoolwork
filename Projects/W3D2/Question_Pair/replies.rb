@@ -52,20 +52,21 @@ class Replies
     @user_id = options['user_id']
   end
 
-  def author
-
+  def author(reply_id)
+    # Find the author of the reply id
+    
   end
 
-  def question
-
+  def question(reply_id)
+    # Find the question based on the reply id
   end
 
   def parent_reply
-
+    # Find replies where parent key is null
   end
 
   def child_replies
-
+    # Find replies where there parent key is not null
   end
 
 end
