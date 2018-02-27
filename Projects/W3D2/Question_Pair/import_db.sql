@@ -1,11 +1,11 @@
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY NOT NULL,
   fname VARCHAR(255) NOT NULL,
   lname VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE questions (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY NOT NULL,
   title VARCHAR(100) NOT NULL,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
@@ -22,6 +22,7 @@ CREATE TABLE question_follows (
 );
 
 CREATE TABLE replies (
+  id INTEGER PRIMARY KEY NOT NULL,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
   question_id INTEGER NOT NULL,
@@ -85,6 +86,7 @@ VALUES
 INSERT INTO
   replies (body, user_id, question_id)
 VALUES
+  /* These replies are the parent replies */
   ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
   ('This is digusting, stop doing what you''re doing', (SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
   ('Please get toilet trained again.', (SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
@@ -95,6 +97,8 @@ VALUES
   ('I wrote this because I''m awesome. Please...someone reply to my question.', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM questions WHERE title = 'Concrete Mathematics')),
   ('You''re not', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Awesomeness')),
   ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code'));
+
+  /* These replies are the children of parent replies */
 
 INSERT INTO
   question_likes (user_id, question_id)
