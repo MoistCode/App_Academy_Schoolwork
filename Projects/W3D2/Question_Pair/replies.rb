@@ -1,6 +1,11 @@
-require 'questions'
+require_relative 'questions'
 
 class Replies
+
+  def self.all
+    data = QuestionsDatabase.instance.execute('SELECT * FROM replies')
+    data.map { |datum| Replies.new(datum) }
+  end
 
   def self.find_by_id(id)
     QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -33,6 +38,13 @@ class Replies
       WHERE
         question_id = ?
     SQL
+  end
+
+  def initialize(options)
+    @id = options['id']
+    @body = options['body']
+    @question_id = options['question_id']
+    @user_id = options['user_id']
   end
 
 end

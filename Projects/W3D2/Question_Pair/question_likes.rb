@@ -1,6 +1,11 @@
-require 'questions'
+require_relative 'questions'
 
 class QuestionLikes
+
+  def self.all
+    data = QuestionsDatabase.instance.execute('SELECT * FROM question_likes')
+    data.map { |datum| QuestionLikes.new(datum) }
+  end
 
   def self.find_by_user_id(user_id)
     QuestionsDatabase.instance.execute(<<-SQL, user_id)
@@ -22,6 +27,11 @@ class QuestionLikes
       WHERE
         question_id = ?
     SQL
+  end
+
+  def initialize(options)
+    @question_id = options['question_id']
+    @user_id = options['user_id']
   end
 
 end

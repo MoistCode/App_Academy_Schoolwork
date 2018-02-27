@@ -1,7 +1,9 @@
 require 'sqlite3'
 require 'singleton'
-require 'users'
-require 'replies'
+require_relative 'users'
+require_relative 'replies'
+require_relative 'question_likes'
+require_relative 'question_follows'
 
 class QuestionsDatabase < SQLite3::Database
   include Singleton
@@ -14,6 +16,11 @@ class QuestionsDatabase < SQLite3::Database
 end
 
 class Questions
+
+  def self.all
+    data = QuestionsDatabase.instance.execute('SELECT * FROM questions')
+    data.map { |datum| Questions.new(datum) }
+  end
 
   def self.find_by_id(id)
     QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -35,6 +42,13 @@ class Questions
       WHERE
         user_id = ?
     SQL
+  end
+
+  def initialize(options)
+    @id = options['id']
+    @title = options['title']
+    @body = options['body']
+    @user_id = options['user_id']
   end
 
 end
