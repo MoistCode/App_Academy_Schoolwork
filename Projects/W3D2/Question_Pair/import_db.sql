@@ -41,6 +41,9 @@ CREATE TABLE question_likes (
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
+/* THERE IS A BUGGGGGGGGGGGGG AROUND HERE THAT I AM TRYING TO FIND */
+/* SEND HELP */
+
 INSERT INTO
   users (fname, lname)
 VALUES
