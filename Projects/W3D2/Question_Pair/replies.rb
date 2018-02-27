@@ -52,4 +52,20 @@ class Replies
     @user_id = options['user_id']
   end
 
+  def author
+
+  end
+
+  def question
+
+  end
+
+  def parent_reply
+
+  end
+
+  def child_replies
+
+  end
+
 end

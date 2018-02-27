@@ -36,8 +36,8 @@ class Questions
     data.map { |datum| Questions.new(datum) }
   end
 
-  def self.find_by_user_id(user_id)
-    data = QuestionsDatabase.instance.execute(<<-SQL, user_id)
+  def self.find_by_author_id(author_id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, author_id)
       SELECT
         *
       FROM
@@ -53,6 +53,14 @@ class Questions
     @title = options['title']
     @body = options['body']
     @user_id = options['user_id']
+  end
+
+  def author
+
+  end
+
+  def replies
+
   end
 
 end

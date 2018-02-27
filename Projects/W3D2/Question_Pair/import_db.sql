@@ -1,7 +1,7 @@
 CREATE TABLE users (
   id INTEGER PRIMARY KEY NOT NULL,
-  fname VARCHAR(255) NOT NULL,
-  lname VARCHAR(255) NOT NULL
+  fname VARCHAR(30) NOT NULL,
+  lname VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE questions (
@@ -25,11 +25,12 @@ CREATE TABLE replies (
   id INTEGER PRIMARY KEY NOT NULL,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
-  question_id INTEGER,
+  question_id INTEGER NOT NULL,
+  parent_reply_id INTEGER,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (question_id) REFERENCES questions(id)
-
+  FOREIGN KEY (question_id) REFERENCES questions(id),
+  FOREIGN KEY (parent_reply_id) REFERENCES replies(id)
 );
 
 CREATE TABLE question_likes (
@@ -84,7 +85,7 @@ VALUES
   ((SELECT id FROM questions WHERE title = 'Starbucks'), (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'));
 
 INSERT INTO
-  replies (body, user_id, question_id)
+  replies (body, user_id, question_id, parent_reply_id)
 VALUES
   /* These replies are the parent replies */
   ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
@@ -99,11 +100,7 @@ VALUES
   ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code')),
 
   /* These replies are the children of parent replies */
-  ('My man...', (SELECT id FROM users WHERE fname = 'Donald' AND lname = 'Knuth'), (SELECT id FROM replies WHERE body LIKE '%firm believer%')),
-  ('LMFAO', (SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM replies WHERE body LIKE '%A tide pod will%')),
-  ('So lonely...', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM replies WHERE body LIKE '%You''re not%')),
-  ('True, true.', (SELECT id FROM users WHERE fname = 'Lirik' AND lname = 'Kun'), (SELECT id FROM replies WHERE body LIKE '%humanity will%')),
-  ('That''s rude.', (SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM replies WHERE body LIKE '%boast about%'));
+
 
 INSERT INTO
   question_likes (user_id, question_id)
