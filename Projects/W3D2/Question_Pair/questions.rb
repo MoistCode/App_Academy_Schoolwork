@@ -23,7 +23,7 @@ class Questions
   end
 
   def self.find_by_id(id)
-    QuestionsDatabase.instance.execute(<<-SQL, id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
@@ -31,10 +31,11 @@ class Questions
       WHERE
         id = ?
     SQL
+    data.map { |datum| Questions.new(datum) }
   end
 
-  def self.find_by_user_id(id)
-    QuestionsDatabase.instance.execute(<<-SQL, user_id)
+  def self.find_by_user_id(user_id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, user_id)
       SELECT
         *
       FROM
@@ -42,6 +43,7 @@ class Questions
       WHERE
         user_id = ?
     SQL
+    data.map { |datum| Questions.new(datum) }
   end
 
   def initialize(options)

@@ -8,7 +8,7 @@ class Users
   end
 
   def self.find_by_id(id)
-    QuestionsDatabase.instance.execute(<<-SQL, id)
+    data = QuestionsDatabase.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
@@ -16,6 +16,7 @@ class Users
       WHERE
         id = ?
     SQL
+    data.map { |datum| Users.new(datum) }
   end
 
   def initialize(options)
