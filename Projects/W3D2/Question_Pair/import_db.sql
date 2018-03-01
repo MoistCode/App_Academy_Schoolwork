@@ -1,22 +1,21 @@
-DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY NOT NULL,
-  fname VARCHAR(30) NOT NULL,
-  lname VARCHAR(30) NOT NULL
+  id INTEGER PRIMARY KEY,
+  fname VARCHAR(255) NOT NULL,
+  lname VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS questions;
 CREATE TABLE questions (
-  id INTEGER PRIMARY KEY NOT NULL,
-  title VARCHAR(100) NOT NULL,
+  id INTEGER PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
 
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-DROP TABLE IF EXISTS question_follows;
 CREATE TABLE question_follows (
+  id INTEGER PRIMARY KEY,
   question_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
 
@@ -24,9 +23,9 @@ CREATE TABLE question_follows (
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
-DROP TABLE IF EXISTS replies;
+
 CREATE TABLE replies (
-  id INTEGER PRIMARY KEY NOT NULL,
+  id INTEGER PRIMARY KEY,
   body TEXT NOT NULL,
   user_id INTEGER NOT NULL,
   question_id INTEGER NOT NULL,
@@ -37,17 +36,14 @@ CREATE TABLE replies (
   FOREIGN KEY (parent_reply_id) REFERENCES replies(id)
 );
 
-DROP TABLE IF EXISTS question_likes;
 CREATE TABLE question_likes (
+  id INTEGER PRIMARY KEY,
   user_id INTEGER NOT NULL,
   question_id INTEGER NOT NULL,
 
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
-
-/* THERE IS A BUGGGGGGGGGGGGG AROUND HERE THAT I AM TRYING TO FIND */
-/* SEND HELP */
 
 INSERT INTO
   users (fname, lname)
@@ -95,7 +91,6 @@ VALUES
 INSERT INTO
   replies (body, user_id, question_id)
 VALUES
-  /* These replies are the parent replies */
   ('I''m a firm believer in moist and warm seats. Keep doing what you''re doing', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
   ('This is digusting, stop doing what you''re doing', (SELECT id FROM users WHERE fname = 'Timmy' AND lname = 'Turner'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
   ('Please get toilet trained again.', (SELECT id FROM users WHERE fname = 'Gayle' AND lname = 'Laakmann'), (SELECT id FROM questions WHERE title = 'Moist Toilet Seat')),
@@ -107,7 +102,6 @@ VALUES
   ('You''re not', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Awesomeness')),
   ('A tide pod will fix that.', (SELECT id FROM users WHERE fname = 'Moist' AND lname = 'Code'), (SELECT id FROM questions WHERE title = 'Clean Code')),
 
-  /* These replies are the children of parent replies */
 
 
 INSERT INTO
