@@ -6,18 +6,18 @@ require 'byebug'
 class SQLObject
 
   def self.columns
-    # Established a connection.
-    # For some reason, the question mark didn't work here?
-    # Table name here is nil so I added cats
-
-    table = DBConnection.instance.execute(<<-SQL)
+    return @columns if @columns
+    table = DBConnection.execute2(<<-SQL)
       SELECT
         *
       FROM
         cats
+      LIMIT
+        1
     SQL
 
-    table.keys
+    table.first.map!(&:to_sym)
+    @columns = table.first
   end
 
   def self.finalize!
@@ -33,7 +33,7 @@ class SQLObject
   end
 
   def self.all
-    # ...
+
   end
 
   def self.parse_all(results)
@@ -49,11 +49,11 @@ class SQLObject
   end
 
   def attributes
-    # ...
+    @attributes ||= {}
   end
 
   def attribute_values
-    # ...
+
   end
 
   def insert
