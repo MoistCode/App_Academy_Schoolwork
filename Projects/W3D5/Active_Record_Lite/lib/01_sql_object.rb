@@ -11,7 +11,7 @@ class SQLObject
       SELECT
         *
       FROM
-        cats
+        #{self.table_name}
       LIMIT
         1
     SQL
@@ -34,6 +34,8 @@ class SQLObject
 
     end
 
+
+
   end
 
   def self.table_name=(table_name)
@@ -45,17 +47,33 @@ class SQLObject
   end
 
   def self.all
-    DBConnection.execute(<<-SQL)
-    
+    data = DBConnection.execute(<<-SQL)
+      SELECT
+        *
+      FROM
+        cats
     SQL
+
+    data.map { |datum| self.new(datum) }
   end
 
   def self.parse_all(results)
-    # ...
+    results.map do |values|
+      self.new(values)
+    end
   end
 
   def self.find(id)
-    # ...
+    data = DBConnection.instance.execute(<<-SQL, id)
+      SELECT
+        *
+      FROM
+        #{self.table_name}
+      WHERE
+        id = ?;
+    SQL
+
+    data.map { |datum| self.new(datum) }.first
   end
 
   def initialize(params = {})
@@ -77,18 +95,44 @@ class SQLObject
   end
 
   def attribute_values
-
+    @attributes.values
   end
 
   def insert
-    # ...
+    # self.attributes returns name and owner_id hash
+    col_without_id = self.class.columns.drop(1)
+    col_to_s = col_without_id.map(&:to_s).join(", ")
+    add_question_marks = (['?'] * col_without_id.count).join(', ')
+
+    DBConnection.execute(<<-SQL, *attribute_values)
+      INSERT INTO
+        #{self.class.table_name} (#{col_to_s})
+      VALUES
+        (#{add_question_marks})
+    SQL
+
+    self.id = DBConnection.last_insert_row_id
   end
 
   def update
-    # ...
+    col_val = self.class.columns.map { |col| "#{col} = ?"}.join(", ")
+
+    DBConnection.execute(<<-SQL, *attribute_values)
+      UPDATE
+        #{self.class.table_name}
+      SET
+        #{col_val}
+      WHERE
+        #{self.class.table_name}.id = #{self.id};
+    SQL
+
   end
 
   def save
-    # ...
+    if self.id.nil?
+      self.insert
+    else
+      self.update
+    end
   end
 end
