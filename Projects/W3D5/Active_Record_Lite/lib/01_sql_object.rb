@@ -21,7 +21,6 @@ class SQLObject
   end
 
   def self.finalize!
-
     columns.each do |column|
 
       define_method(column.to_s) do
