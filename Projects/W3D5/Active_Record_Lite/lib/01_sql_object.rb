@@ -21,15 +21,19 @@ class SQLObject
   end
 
   def self.finalize!
+
     columns.each do |column|
+
       define_method(column.to_s) do
-        instance_variable_get("@#{column}")
+        self.attributes[column]
       end
 
       define_method("#{column}=") do |new_val|
-        instance_variable_set("@#{column}", new_val)
+        self.attributes[column] = new_val
       end
+
     end
+
   end
 
   def self.table_name=(table_name)
@@ -41,7 +45,9 @@ class SQLObject
   end
 
   def self.all
-
+    DBConnection.execute(<<-SQL)
+    
+    SQL
   end
 
   def self.parse_all(results)
@@ -53,6 +59,16 @@ class SQLObject
   end
 
   def initialize(params = {})
+
+    params.each do |attr_name, value|
+
+      if self.methods.include?("#{attr_name.to_s}=".to_sym)
+        send("#{attr_name.to_s}=", value)
+      else
+        raise "unknown attribute '#{attr_name}'"
+      end
+
+    end
 
   end
 
