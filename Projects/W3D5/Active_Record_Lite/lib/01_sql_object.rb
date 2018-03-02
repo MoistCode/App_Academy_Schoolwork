@@ -9,14 +9,15 @@ class SQLObject
     # Established a connection.
     # For some reason, the question mark didn't work here?
     # Table name here is nil so I added cats
-    
-    DBConnection.instance.execute(<<-SQL)
-    SELECT
-      *
-    FROM
-      cats
 
+    table = DBConnection.instance.execute(<<-SQL)
+      SELECT
+        *
+      FROM
+        cats
     SQL
+
+    table.keys
   end
 
   def self.finalize!
