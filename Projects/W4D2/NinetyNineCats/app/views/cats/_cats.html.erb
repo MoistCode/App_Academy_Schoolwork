@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <td> Name </td>
+    <td> Sex </td>
+    <td> Color </td>
+  </tr>
+  <% if type == :index %>
+    <% cats.each do |cat| %>
+      <tr>
+          <td ><%= cat.name %> </td>
+          <td ><%= cat.sex %> </td>
+          <td ><%= cat.color %> </td>
+      </tr>
+    <% end %>
+  <% elsif type == :show %>
+    <tr>
+        <td ><%= cat.name %> </td>
+        <td ><%= cat.sex %> </td>
+        <td ><%= cat.color %> </td>
+    </tr>
+  <% end %>
+</table>
