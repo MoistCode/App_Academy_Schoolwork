@@ -29,7 +29,7 @@ class User < ApplicationRecord
       redirect_to users_url
     else
       flash[:error] = ['Incorrect username or password']
-      redirect_to login_page
+      render 'sessions/new'
     end
   end
 
