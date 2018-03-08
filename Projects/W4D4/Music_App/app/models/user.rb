@@ -11,18 +11,46 @@
 #
 
 class User < ApplicationRecord
-  validates :email, :password_digest, :session_token, presnece: true
-  validates :password, presnece: { minimum: 6, allow_nil: true }
-  after_initialization: :ensure_session_token
+  validates :email, :password_digest, :session_token, presence: true, uniqueness: true
+  validates :password, presence: { minimum: 6, allow_nil: true }
+  after_initialize :ensure_session_token
+
+  attr_reader :password
+
+  def self.generate_session_token
+    SecureRandom.urlsafe_base64(16)
+  end
+
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
+
+    if user && user.is_password?(password)
+      redirect_to users_url
+    else
+      flash[:error] = ['Incorrect username or password']
+      redirect_to login_page
+    end
+  end
+
+  def reset_session_token!
+    self.session_token = User.generate_session_token
+  end
+
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
 
   def password=(password)
     @password = password
-    BC
+    self.password_digest = BCrypt::Password.create(password)
   end
 
   private
 
   def ensure_session_token
-
+    self.session_token ||= User.generate_session_token
   end
+
 end
+
+# Uesr.new(email: "blah", password: "cowman")
