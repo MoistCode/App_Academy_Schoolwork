@@ -45,7 +45,15 @@ class BandsController < ApplicationController
   end
 
   def destroy
+    band = Band.find_by(id: params[:id])
 
+    if band.delete
+      flash[:success] = "They were that bad huh?"
+      redirect_to bands_url
+    else
+      flash[:errors] = "Something went wrong, maybe they're undeletable"
+      redirect_to bands_url
+    end
   end
 
   private
