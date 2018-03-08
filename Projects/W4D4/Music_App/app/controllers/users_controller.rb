@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to users_url
     else
       flash.now[:errors] = ['Cannot create account, please try again']
-      render :new
+      render new_user_url(user)
     end
   end
 
