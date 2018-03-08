@@ -25,6 +25,7 @@ class User < ApplicationRecord
     user = User.find_by(email: email)
 
     if user && user.is_password?(password)
+      flash[:success] = "Successfully logged in! Welcome #{user.email}"
       redirect_to users_url
     else
       flash[:error] = ['Incorrect username or password']
