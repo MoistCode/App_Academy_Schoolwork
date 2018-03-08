@@ -28,11 +28,20 @@ class BandsController < ApplicationController
   end
 
   def edit
+    @band = Band.find_by(id: params[:id])
     render :edit
   end
 
   def update
+    band = Band.find_by(id: params[:id])
 
+    if band.update_attributes(band_params)
+      flash[:success] = 'Successfully edited band'
+      redirect_to band_url(band)
+    else
+      flash[:error] = 'Unable to edit band'
+      redirect_to edit_band_url(band)
+    end
   end
 
   def destroy
