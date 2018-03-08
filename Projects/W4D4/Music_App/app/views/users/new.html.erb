@@ -1,12 +1,3 @@
+<h1>New User Creation Page</h1>
 
-<form action="<%= users_url %>" method="post">
-
-  <label for="Email">Email:</label>
-  <input type="text" name="user[:email]" value="user.email">
-  <br>
-
-  <label for="Password">Password:</label>
-  <input type="password" name="user[:password]" value="">
-  <br>
-
-</form>
+<%= render 'form', user: @user %>
