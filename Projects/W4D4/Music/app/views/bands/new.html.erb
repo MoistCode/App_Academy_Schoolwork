@@ -1,0 +1,12 @@
+<h1>Create New Band</h1>
+
+<%= flash[:success] if flash[:success]%>
+<%= flash[:errors] if flash[:errors]%>
+
+<form action="<%= bands_url %>" method="post">
+  <label for="band_name">Band Name:</label>
+  <input id:"band_name" type="text" name="band[name]" value="">
+  <br>
+
+  <input type="submit" name="" value="Create New Band">
+</form>

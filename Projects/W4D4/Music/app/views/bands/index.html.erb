@@ -1,0 +1,7 @@
+<h1>Bands Index Page</h1>
+
+<% Band.all.each do |band| %>
+  <ul>
+    <li><%= band.name %></li>
+  </ul>
+<% end %>
