@@ -1,9 +1,9 @@
-<h1>Create New User</h1>
+<h1>Log In Page</h1>
 
 <%= flash[:success] if flash[:success]%>
 <%= flash[:errors] if flash[:errors]%>
 
-<form action="<%= users_url %>" method="post">
+<form action="<%= session_url %>" method="post">
   <label for="Email">Email:</label>
   <input id:"Email" type="text" name="user[email]" value="">
   <br>

@@ -1,1 +1,6 @@
 <h1>This is the main page. Currently a placeholder</h1>
+
+<p><%= current_user ? current_user.email : "Nobody" %> is currently logged on</p>
+
+<%= flash[:success] if flash[:success]%>
+<%= flash[:errors] if flash[:errors]%>
