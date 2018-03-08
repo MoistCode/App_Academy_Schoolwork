@@ -1,28 +1,71 @@
 <!DOCTYPE html>
+
+
+
 <html>
   <head>
-    <title>Music</title>
+    <title>:D</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <style>
+
+    body {
+      background: linear-gradient(yellow, white);
+    }
+
+    #button {
+      line-height: 12px;
+      width: 100px;
+      font-size: 12pt;
+      font-family: tahoma;
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: blue;
+      background: linear-gradient(red, yellow)
+    }
+
+    #signup_button {
+      line-height: 12px;
+      width: 100px;
+      font-size: 12pt;
+      font-family: tahoma;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: red;
+      background: linear-gradient(orange, green)
+    }
+
+    #muh_head {
+      font-size: 50pt;
+      font-style: italic;
+      background: linear-gradient(blue, white)
+    }
+  </style>
+
   <body>
+
 
     <% if logged_in? %>
       <form action="<%= session_url %>" method="post">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" name="" value="Log Out">
+        <input id="button" type="submit" name="" value="Log Out">
       </form>
     <% else %>
       <form action="<%= new_session_url %>" method="get">
-        <input type="submit" name="" value="Log In">
+        <input id="button" type="submit" name="" value="Log In">
       </form>
       <form action="<%= new_user_url %>" method="get">
-        <input type="submit" name="" value="Sign Up">
+        <input id="signup_button" type="submit" name="" value="Sign Up">
       </form>
     <% end %>
+
+    <h1 id="muh_head">Welcome to the Music App. This header will be everywhere >:D </h1>
 
     <%= yield %>
   </body>
