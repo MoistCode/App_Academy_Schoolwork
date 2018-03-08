@@ -18,5 +18,5 @@ class Album < ApplicationRecord
     class_name: :Band,
     primary_key: :id,
     foreign_key: :band_id
-    
+
 end

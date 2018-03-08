@@ -36,7 +36,15 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
+    album = Album.find_by(id: params[:id])
 
+    if album.delete
+      flash[:success] = "Successful Deletion"
+      redirect_to bands_url
+    else
+      flash[:errors] = "Unsuccessful Deletion"
+      redirect_to bands_url
+    end
   end
 
   private

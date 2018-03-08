@@ -2,7 +2,7 @@
 
 <% Band.all.each do |band| %>
   <ul>
-    <li><%= band.name %></li>
+    <a href="<%= band_url(band) %>"><%= band.name %></a>
 
     <li>
       <a href="<%= edit_band_url(band) %>">Edit Band Details</a>

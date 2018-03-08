@@ -7,8 +7,11 @@
 </style>
 
 <body id="band_name">
-  <%= @band.name %>
-  <% @band.albums.each do |album| %>
-    <%= album.title %>
-  <% end %>
+  <h2><%= @band.name %><h2>
+  <h3>Albums</h3>
+  <ul>
+    <% @band.albums.each do |album| %>
+      <li><%= album.title %></li>
+    <% end %>
+  </ul>
 </body>

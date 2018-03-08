@@ -47,7 +47,7 @@ class BandsController < ApplicationController
   def destroy
     band = Band.find_by(id: params[:id])
 
-    if band.delete
+    if band.destroy
       flash[:success] = "They were that bad huh?"
       redirect_to bands_url
     else
