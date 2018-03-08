@@ -6,4 +6,9 @@
   }
 </style>
 
-<body id="band_name"><%= @band.name %></body>
+<body id="band_name">
+  <%= @band.name %>
+  <% @band.albums.each do |album| %>
+    <%= album.title %>
+  <% end %>
+</body>

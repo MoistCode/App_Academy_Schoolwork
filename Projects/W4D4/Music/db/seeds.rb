@@ -13,8 +13,9 @@ end
 
 100.times do
   Album.create(
-    title:,
+    title: Faker::LeagueOfLegends.champion,
     year: (1990..2018).to_a.sample,
-    band_id: rand(20) + 1
+    band_id: rand(20) + 1,
+    status: ["LIVE", "STUDIO"].sample
   )
 end

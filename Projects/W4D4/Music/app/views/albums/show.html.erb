@@ -1,0 +1,6 @@
+<ul>
+  <li>Album Title: <%= @album.title %></li>
+  <li>Year: <%= @album.year %></li>
+  <li>Status: <%= @album.status %></li>
+  <li>Band: <%= Band.find_by(id: @album.band_id).name %></li>
+</ul>
