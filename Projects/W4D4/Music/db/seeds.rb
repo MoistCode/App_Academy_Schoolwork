@@ -7,6 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-100.times do
+20.times do
   Band.create(name: Faker::RockBand.name)
+end
+
+100.times do
+  Album.create(
+    title:,
+    year: (1990..2018).to_a.sample,
+    band_id: rand(20) + 1
+  )
 end
