@@ -48,10 +48,10 @@ class AlbumsController < ApplicationController
     album = Album.find_by(id: params[:id])
 
     if album.delete
-      flash.now[:success] = "Successful Deletion"
+      flash[:success] = "Successful Deletion"
       redirect_to albums_url
     else
-      flash.now[:errors] = "Unsuccessful Deletion"
+      flash[:errors] = "Unsuccessful Deletion"
       redirect_to albums_url
     end
   end

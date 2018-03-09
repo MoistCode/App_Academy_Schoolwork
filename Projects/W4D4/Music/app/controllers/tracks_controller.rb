@@ -15,7 +15,15 @@ class TracksController < ApplicationController
   end
 
   def create
+    track = Track.new(track_params)
 
+    if track.save
+      flash[:success] = "Successfully created track"
+      redirect_to track_url(track)
+    else
+      flash[:errors] = "Cannot create track"
+      render :new
+    end
   end
 
   def edit
@@ -28,6 +36,12 @@ class TracksController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+
+  def track_params
+    params.require(:track).permit(:title, :album_id)
   end
 
 end

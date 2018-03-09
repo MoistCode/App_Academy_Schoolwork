@@ -1,7 +1,7 @@
 <h1>Track Name: <%= @track.title %></h1>
 
 <ul>
-  <li>Band: <%= @track.album.band.name %></li>
-  <li>Album: <%= @track.album.title %></li>
+  <li>Band: <a href="<%= band_url(@track.album.band) %>"><%= @track.album.band.name %></a></li>
+  <li>Album: <a href="<%= album_url(@track.album) %>"><%= @track.album.title %></a></li>
   <li>Album Year: <%= @track.album.year %></li>
 </ul>

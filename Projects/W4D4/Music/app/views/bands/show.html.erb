@@ -11,7 +11,7 @@
   <h3>Albums</h3>
   <ul>
     <% @band.albums.each do |album| %>
-      <li><%= album.title %></li>
+      <li><a href="<%= album_url(album) %>"><%= album.title %></a></li>
     <% end %>
   </ul>
 </body>
