@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def require_user_logon
     unless session[:session_token].present?
-      flash[:error] = 'Must be logged in'
+      flash[:errors] = 'Must be logged in'
       redirect_to new_session_url
     end
   end
