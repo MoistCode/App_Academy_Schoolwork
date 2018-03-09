@@ -19,3 +19,10 @@ end
     status: ["LIVE", "STUDIO"].sample
   )
 end
+
+500.times do
+  Track.create(
+    title: Faker::Name.first_name,
+    album_id: rand(100) + 1
+  )
+end

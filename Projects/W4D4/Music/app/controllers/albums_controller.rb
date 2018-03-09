@@ -28,22 +28,31 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-
+    @album = Album.find_by(id: params[:id])
+    render :edit
   end
 
   def update
+    album = Album.find_by(id: params[:id])
 
+    if album.update_attributes(album_params)
+      flash[:success] = "Successfully editted the album"
+      redirect_to album_url(album)
+    else
+      flash[:error] = "Could not edit the album."
+      redirect_to edit_album_url
+    end
   end
 
   def destroy
     album = Album.find_by(id: params[:id])
 
     if album.delete
-      flash[:success] = "Successful Deletion"
-      redirect_to bands_url
+      flash.now[:success] = "Successful Deletion"
+      redirect_to albums_url
     else
-      flash[:errors] = "Unsuccessful Deletion"
-      redirect_to bands_url
+      flash.now[:errors] = "Unsuccessful Deletion"
+      redirect_to albums_url
     end
   end
 

@@ -1,7 +1,19 @@
-<h1>List of all bands</h1>
+<h1>List of all albums</h1>
 
 <% Album.all.each do |album| %>
   <ul>
-    <a href="<%= album_url(album) %>"><%= album.title %></a>
+    <li><a href="<%= album_url(album) %>"><%= album.title %></a></li>
+    <li>
+      <form class="" action="<%= edit_album_url(album) %>" method="get">
+        <input type="submit" name="" value="Edit Album">
+      </form>
+    </li>
+    <li>
+      <form class="" action="<%= album_url(album) %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" name="" value="Delete Album">
+      </form>
+    </li>
   </ul>
 <% end %>

@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :albums
 
+  resources :tracks
+
   resource :session, only: [:new, :create, :destroy]
 end

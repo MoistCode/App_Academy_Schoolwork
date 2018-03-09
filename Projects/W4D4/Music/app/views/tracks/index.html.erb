@@ -1,0 +1,6 @@
+<h1>List of all tracks. There's quite a bit.</h1>
+
+<% Track.all.each do |track| %>
+  <a href="<%= track_url(track) %>"><%= track.title %></a>
+  <br>
+<% end %>

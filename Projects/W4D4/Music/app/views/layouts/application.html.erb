@@ -70,6 +70,15 @@
 
     <h1 id="muh_head">Welcome to the Music App. This header will be everywhere >:D </h1>
 
+    <a href="<%= users_url %>">Main Page</a>
+    <a href="<%= bands_url %>">Bands List</a>
+    <a href="<%= albums_url %>">Albums List</a>
+    <a href="<%= tracks_url %>">Tracks List</a>
+
+    <%= flash[:success] if flash[:success]%>
+    <%= flash[:errors] if flash[:errors]%>
+
     <%= yield %>
+
   </body>
 </html>
