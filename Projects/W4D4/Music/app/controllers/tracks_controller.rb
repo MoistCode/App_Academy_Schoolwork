@@ -1,5 +1,7 @@
 class TracksController < ApplicationController
 
+  before_action :require_user_logon
+
   def index
     render :index
   end
