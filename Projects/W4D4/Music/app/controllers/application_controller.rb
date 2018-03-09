@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
   private
 
   def require_user_logon
-    session[:session_token] == current_user.session_token
+    unless session[:session_token].present?
+      flash[:error] = 'Must be logged in'
+      redirect_to new_session_url
+    end
   end
 
   def current_user

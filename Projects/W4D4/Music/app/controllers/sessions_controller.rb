@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :require_user_logon, except: [:new, :create]
+
   def new
     render :new
   end
