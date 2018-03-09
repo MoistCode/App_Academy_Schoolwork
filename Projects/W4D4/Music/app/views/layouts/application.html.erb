@@ -29,6 +29,18 @@
       background: linear-gradient(red, yellow)
     }
 
+    #logout_button:active{
+      position: absolute;
+      top: 0;
+      right: 1;
+    }
+
+    #logout_button:hover{
+      position: absolute;
+      top: 0;
+      right: 5px;
+    }
+
     #signup_button {
       line-height: 12px;
       width: 100px;
@@ -55,7 +67,7 @@
       <form action="<%= session_url %>" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <input type="hidden" name="_method" value="delete">
-        <input id="button" type="submit" name="" value="Log Out">
+        <input id="logout_button" type="submit" name="" value="Log Out">
       </form>
     <% else %>
       <form action="<%= new_session_url %>" method="get">
