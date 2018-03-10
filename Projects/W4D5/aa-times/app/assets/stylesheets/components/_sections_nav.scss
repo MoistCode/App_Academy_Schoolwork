@@ -1,0 +1,18 @@
+.sections-nav {
+  display: flex;
+  border-bottom: 1px solid $gray;
+}
+
+.sections-ul {
+  margin: 0 auto;
+  width: 700px;
+
+  ul {
+    display: flex;
+  }
+
+  li {
+    margin: 7px;
+  }
+
+}
