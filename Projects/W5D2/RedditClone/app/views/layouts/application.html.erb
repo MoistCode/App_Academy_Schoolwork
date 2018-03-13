@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RedditClone</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <%= current_user.username if current_user %>
+
+    <%= flash[:errors] unless flash[:errors].nil? || flash[:errors].empty? %>
+    <%= yield %>
+  </body>
+</html>

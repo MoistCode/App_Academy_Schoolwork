@@ -1,0 +1,43 @@
+<h1> <%= @post.title %> </h1>
+<br>
+<h3>Post</h3>
+<%= @post.content %>
+<br>
+
+<h2>Subs</h2>
+<% @post.subs.each do |sub| %>
+  <li><%= sub.title %></li>
+<% end %>
+<br>
+<h2>New Comment</h2>
+<form class="" action="<%= post_comments_url(@post.id) %>" method="post">
+  <label>Reply
+    <textarea name="comment[body]"></textarea>
+  </label>
+  <input type="submit" name="" value="Submit Reply">
+</form>
+<br>
+<h2>Comments</h2>
+<% if @post.comments %>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <%= comment.body %><br>
+      By: <%= comment.author.username %><br>
+        <form class="" action="<%= post_comments_url(@post.id) %>" method="post">
+          <input type="hidden" name="comment[comment_id]" value="<%= comment.id %>">
+          <label>Reply
+            <textarea name="comment[body]"></textarea>
+          </label>
+          <input type="submit" name="" value="Submit Reply">
+        </form>
+        <% if comment.comments %>
+          <% comment.comments.each do |comment| %>
+            <%= comment.body %>
+            By: <%= comment.author.username %><br>
+          <% end %>
+        <% end %>
+    </li>
+  <% end %>
+<% else %>
+  <%= "No comments :(" %>
+<% end %>
