@@ -1,0 +1,46 @@
+/* PHASE 1: Header */
+
+.topnavbar {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: red;
+  padding: 0px 70px;
+  color: white;
+  /* font-weight: bold; */
+  font-size: 20px;
+  font-family: 'Indie Flower';
+}
+
+.topnavbar div:first-child  {
+  border-style: solid;
+  border-width: 0px 2px;
+  padding: 10px;
+  font-weight: bolder;
+}
+
+.toprightnav ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toprightnav li {
+  border-style: solid;
+  border-width: 0px 2px 0px 0px;
+  padding: 10px;
+}
+
+.toprightnav li:first-child {
+  border-left: 2px solid white;
+}
+
+.toprightnav li:hover {
+  background-color: black;
+}
+
+@media all and (max-width: 625px) {
+  .toprightnav {
+    display: none;
+  }
+   
+}
