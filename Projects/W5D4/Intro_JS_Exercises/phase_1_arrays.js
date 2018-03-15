@@ -35,6 +35,25 @@ Array.prototype.twoSum = function(arr) {
 
 console.log(newArr.twoSum([1,2,3,6,2,4,-1,-1,-2,-4,-3,-2]));
 
-Array.prototype.transpose = function(arr1, arr2) {
-  
+Array.prototype.transpose = function(arr) {
+   let mainArr = [];
+   let counter = 0;
+   while (counter < arr[0].length) {
+    mainArr.push([]);
+    counter ++;
+   }
+   for(i = 0; i < arr[0].length; i++){
+     for(j = 0; j < arr.length; j++) {
+       mainArr[i].push(arr[j][i]);
+     }
+   }
+   return mainArr;
 }
+
+let transArr = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+];
+
+console.log(newArr.transpose(transArr));
