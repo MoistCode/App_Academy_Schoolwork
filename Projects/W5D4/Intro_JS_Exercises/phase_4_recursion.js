@@ -26,12 +26,32 @@ function sumRec(arr) {
 // console.log(sumRec([1,2,3,4,5,6,7]));
 
 function exponent(base, exp) {
+  let total = 1;
 
+  if (exp === 0) {
+    return 1;
+  }
+
+  for(let i = 0; i < exp; i++) {
+    total = total * base;
+  }
+
+  return total;
 }
+
+// console.log(exponent(5, 3));
 
 function fibinacci(n) {
+  let arr = [1,1];
 
+  while (arr.length < n) {
+    arr.push(arr[arr.length-1] + arr[arr.length-2]);
+  }
+
+  return arr
 }
+
+// console.log(fibinacci(7));
 
 function deepDup(arr) {
 
@@ -64,12 +84,30 @@ function sumRecRecursive(arr) {
 // console.log(sumRecRecursive([1,2,4,45,4,3,8,2,4]));
 
 function exponentRecursive(base, exp) {
+  if (exp === 0) {
+    return 1;
+  }
 
+  let result = (base * exponentRecursive(base, exp-1));
+  return result;
 }
+
+// console.log(exponentRecursive(5, 3));
 
 function fibinacciRecursive(n) {
+  if (n === 2) {
+    return [1,1];
+  }
+  if (n === 1) {
+    return [1];
+  }
 
+  let recArr = fibinacciRecursive(n-1)
+  recArr.push(recArr[recArr.length-1] + recArr[recArr.length-2]);
+  return recArr;
 }
+
+// console.log(fibinacciRecursive(7));
 
 function deepDupRecursive(arr) {
 
