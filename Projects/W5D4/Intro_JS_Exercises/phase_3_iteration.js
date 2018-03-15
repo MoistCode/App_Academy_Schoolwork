@@ -1,5 +1,5 @@
 newArr = new Array;
-
+newStr = new String;
 Array.prototype.bubbleSort = function(arr) {
   let unsorted = true;
   let arrCopy = arr.slice(0);
@@ -22,8 +22,14 @@ Array.prototype.bubbleSort = function(arr) {
 
 }
 
-console.log(newArr.bubbleSort([5,2,51,4,5,6,7,32,5,76,3,4,42,34,6,7,2]));
+// console.log(newArr.bubbleSort([5,2,51,4,5,6,7,32,5,76,3,4,42,34,6,7,2]));
 
 String.prototype.substrings = function(str) {
+  let counter = 1;
+  let arr = [];
+  while (counter <= str.length){
 
+  }
 }
+
+console.log(newStr.substrings('string'));
