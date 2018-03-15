@@ -15,8 +15,15 @@ function range(start, end) {
 // console.log(range(1, 17));
 
 function sumRec(arr) {
+  let sum = 0;
+  for(let i = 0; i < arr.length; i++){
+    sum = sum + arr[i];
+  }
 
+  return sum
 }
+
+// console.log(sumRec([1,2,3,4,5,6,7]));
 
 function exponent(base, exp) {
 
@@ -42,11 +49,19 @@ function rangeRecursive(start, end) {
   return arr
 }
 
-console.log(rangeRecursive(1, 17));
+// console.log(rangeRecursive(1, 17));
 
 function sumRecRecursive(arr) {
-
+  if (arr.length === 1){
+    return arr[0];
+  }
+  let shiftedNum = arr.shift(1)
+  let recurNum = sumRecRecursive(arr);
+  return recurNum + shiftedNum
 }
+
+// console.log(sumRec([1,2,4,45,4,3,8,2,4]));
+// console.log(sumRecRecursive([1,2,4,45,4,3,8,2,4]));
 
 function exponentRecursive(base, exp) {
 
