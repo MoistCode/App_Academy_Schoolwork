@@ -38,13 +38,13 @@ Array.prototype.myReduce = function(arr, cb, initial = '') {
     }
     return initial;
   }
+
   if (initial !== '') {
     for(i = 0; i < arr.length; i++) {
       initial = cb(initial, arr[i]);
-      return initial;
     }
+    return initial;
   }
-
 }
 
 let timesV2 = function(num1, num2) {
