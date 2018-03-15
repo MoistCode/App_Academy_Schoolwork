@@ -33,8 +33,16 @@ function deepDup(arr) {
 // Recursive versions ========================================================
 
 function rangeRecursive(start, end) {
+  if ((start + 1) === end) {
+    return [start, end]; // Base case
+  }
 
+  let arr = rangeRecursive(start+1, end);
+  arr.unshift(start);
+  return arr
 }
+
+console.log(rangeRecursive(1, 17));
 
 function sumRecRecursive(arr) {
 
