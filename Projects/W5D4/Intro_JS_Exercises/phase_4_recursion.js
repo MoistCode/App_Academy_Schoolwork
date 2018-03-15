@@ -57,6 +57,18 @@ function deepDup(arr) {
 
 }
 
+function bsearch(arr, target) {
+
+}
+
+function mergesort(arr) {
+
+}
+
+function subsets(arr) {
+
+}
+
 // Recursive versions ========================================================
 
 function rangeRecursive(start, end) {
@@ -110,5 +122,17 @@ function fibinacciRecursive(n) {
 // console.log(fibinacciRecursive(7));
 
 function deepDupRecursive(arr) {
+
+}
+
+function bsearchRecrusive(arr) {
+
+}
+
+function mergesortRecursive(arr) {
+
+}
+
+function subsetsRecursive(arr) {
 
 }
