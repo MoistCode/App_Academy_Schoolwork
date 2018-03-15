@@ -4,6 +4,8 @@ require 'erb'
 require_relative './session'
 require 'byebug'
 
+
+
 class ControllerBase
   attr_reader :req, :res, :params, :session
 
