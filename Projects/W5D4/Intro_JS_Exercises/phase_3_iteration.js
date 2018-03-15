@@ -26,10 +26,23 @@ Array.prototype.bubbleSort = function(arr) {
 
 String.prototype.substrings = function(str) {
   let counter = 1;
-  let arr = [];
-  while (counter <= str.length){
+  let finalArr = [];
 
+  while (counter <= str.length) {
+    for(let i = 0; i < str.length; i++) {
+      let strArr = [str[i]];
+      for(let j = i+1; j <= str.length; j++) {
+        if (strArr.length === counter) {
+          finalArr.push(strArr);
+          break;
+        }
+        strArr.push(str[j]);
+      }
+    }
+    counter++;
   }
+  console.log(finalArr);
+
 }
 
 console.log(newStr.substrings('string'));
