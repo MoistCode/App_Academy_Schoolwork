@@ -12,7 +12,7 @@ let printNum = function(num) {
   console.log(num)
 }
 
-newArr.myEach(testArr, printNum);
+// newArr.myEach(testArr, printNum);
 
 Array.prototype.myMap = function(arr, cb) {
   let arrCopy = [];
@@ -28,6 +28,27 @@ let timesTwo = function(num) {
   return (num * 2);
 }
 
-console.log(newArr.myMap(testArr, timesTwo));
+// console.log(newArr.myMap(testArr, timesTwo));
 
-Array.prototype.myReduce
+Array.prototype.myReduce = function(arr, cb, initial = '') {
+  if (initial === '') {
+    let initial = arr[0];
+    for(i = 1; i < arr.length; i++) {
+      initial = cb(initial, arr[i]);
+    }
+    return initial;
+  }
+  if (initial !== '') {
+    for(i = 0; i < arr.length; i++) {
+      initial = cb(initial, arr[i]);
+      return initial;
+    }
+  }
+
+}
+
+let timesV2 = function(num1, num2) {
+  return num1 * num2
+}
+
+console.log(newArr.myReduce(testArr, timesV2));
