@@ -1,1 +1,19 @@
 /* PHASE 3: Layout */
+
+.content {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  width: 90%;
+
+}
+
+.content-sidebar {
+  border: 2px black solid;
+  padding: 20%;
+}
+
+.content-main {
+  border: 2px black solid;
+  padding: 80%;
+}

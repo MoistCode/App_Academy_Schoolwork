@@ -65,7 +65,7 @@ function bsearch(arr, target) {
   }
 
   if (arr[middle] > target) {
-
+    return 
   }
 
   if (arr[middle] < target) {
