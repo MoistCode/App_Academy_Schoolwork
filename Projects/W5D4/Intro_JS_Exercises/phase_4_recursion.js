@@ -58,6 +58,19 @@ function deepDup(arr) {
 }
 
 function bsearch(arr, target) {
+  let middle = Math.floor(arr.length / 2);
+
+  if (arr[middle] === target) {
+    return middle;
+  }
+
+  if (arr[middle] > target) {
+
+  }
+
+  if (arr[middle] < target) {
+    return middle + bsearch(arr.slice(middle + 1), target);
+  }
 
 }
 
