@@ -10,10 +10,25 @@ class Clock {
   }
 
   printTime() {
-    console.log(`Time: ${this.hour}:${this.minute}:${this.second}`);
+
+    console.log(
+      `Time: ${this._addLeadingZeroes(2, this.hour)}:
+      ${this._addLeadingZeroes(2, this.minute)}:
+      ${this._addLeadingZeroes(2, this.second)}`
+    );
   }
 
   // Underscore is just convention indicating a priavte method
+
+  _addLeadingZeroes(numOfDigits, partition) {
+    let timeStr = partition.toString();
+
+    while (timeStr.length < numOfDigits) {
+      timeStr = '0' + timeStr;
+    }
+
+    return timeStr
+  }
 
   _tick() {
     this._incrementSeconds();
