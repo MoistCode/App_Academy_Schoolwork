@@ -3,6 +3,10 @@ class Board {
 
   }
 
+  _generateBoard() {
+
+  }
+
   _isWinner() {
 
   }
@@ -15,11 +19,15 @@ class Board {
 
   }
 
+  _isValidMove() {
+    
+  }
+
   _placeMark() {
 
   }
 
-  
+
 }
 
 module.exports = Board;
