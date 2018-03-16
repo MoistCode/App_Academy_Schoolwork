@@ -21,6 +21,7 @@ class Game {
         // Notify of any illegal moves
       // Display towers and disks
       // Repeat until won
+
   }
 
   _createTowerAndDisks() {
@@ -55,6 +56,7 @@ class Game {
         });
       });
     } else {
+      reader.close();
       return console.log('You win!')
     }
   }
@@ -77,8 +79,8 @@ class Game {
   }
 
   _isLoser() {
-    console.log(this.towersAndDisks[2]);
-    return this.towersAndDisks[2] !== [1,2,3];
+    let a = this.towersAndDisks[2];
+    return !(a.includes(1) && a.includes(2) && a.includes(3));
   }
 
 }
