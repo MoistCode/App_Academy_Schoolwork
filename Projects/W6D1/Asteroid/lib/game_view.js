@@ -1,5 +1,5 @@
-const Game = require('./game');
-const MovingObjectFile = require('./moving_object');
+const Game = require('../lib/game');
+const MovingObjectFile = require('../lib/moving_object');
 
 
 let space = document.getElementById('space');
