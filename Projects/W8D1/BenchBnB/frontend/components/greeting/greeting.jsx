@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 class Greeting extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
+    console.log(this.props);
   }
 
   logoutUser() {
@@ -32,6 +33,11 @@ class Greeting extends React.Component {
   }
 
   render() {
+    if (this.props.match.path === '/signup') {
+      return (
+        <h3>:D</h3>
+      )
+    }
     if (this.props.currentUser) {
       return this.loggedOutGreeting();
     } else {
