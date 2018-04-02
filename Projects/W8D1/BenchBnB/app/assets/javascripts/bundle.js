@@ -4304,11 +4304,7 @@ var _root = __webpack_require__(179);
 
 var _root2 = _interopRequireDefault(_root);
 
-var _session_api_util = __webpack_require__(48);
-
-var SessionApiUtil = _interopRequireWildcard(_session_api_util);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+var _session_actions = __webpack_require__(27);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4317,6 +4313,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.login = _session_actions.login;
+  window.logout = _session_actions.logout;
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
 
@@ -23516,7 +23514,7 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _session_actions.RECEIVE_SESSION_ERRORS:
-      return action.errors;
+      return oldState.concat(action.errors);
     case _session_actions.RECEIVE_CURRENT_USER:
       return [];
     default:
@@ -29980,18 +29978,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Greeting = function (_React$Component) {
   _inherits(Greeting, _React$Component);
 
-  function Greeting() {
+  function Greeting(props) {
     _classCallCheck(this, Greeting);
 
-    return _possibleConstructorReturn(this, (Greeting.__proto__ || Object.getPrototypeOf(Greeting)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Greeting.__proto__ || Object.getPrototypeOf(Greeting)).call(this, props));
+
+    _this.logoutUser = _this.logoutUser.bind(_this);
+    return _this;
   }
 
   _createClass(Greeting, [{
+    key: 'logoutUser',
+    value: function logoutUser() {
+      this.props.logout();
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props = this.props,
-          currentUser = _props.currentUser,
-          logout = _props.logout;
+      var currentUser = this.props.currentUser;
 
       if (currentUser) {
         return _react2.default.createElement(
@@ -30001,11 +30005,11 @@ var Greeting = function (_React$Component) {
             'h1',
             null,
             'Welcome, ',
-            currentUser
+            currentUser.username
           ),
           _react2.default.createElement(
             'button',
-            null,
+            { onClick: this.logoutUser },
             'Log Out'
           )
         );
