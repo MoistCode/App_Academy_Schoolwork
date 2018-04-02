@@ -30027,6 +30027,7 @@ var Greeting = function (_React$Component) {
           { to: '/login' },
           'Log In'
         ),
+        _react2.default.createElement('br', null),
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/signup' },
