@@ -29984,6 +29984,8 @@ var Greeting = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Greeting.__proto__ || Object.getPrototypeOf(Greeting)).call(this, props));
 
     _this.logoutUser = _this.logoutUser.bind(_this);
+    _this.loggedOutGreeting = _this.loggedOutGreeting.bind(_this);
+    _this.loggedInGreeting = _this.loggedInGreeting.bind(_this);
     return _this;
   }
 
@@ -29993,46 +29995,54 @@ var Greeting = function (_React$Component) {
       this.props.logout();
     }
   }, {
+    key: 'loggedOutGreeting',
+    value: function loggedOutGreeting() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Welcome, ',
+          this.props.currentUser.username
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.logoutUser },
+          'Log Out'
+        )
+      );
+    }
+  }, {
+    key: 'loggedInGreeting',
+    value: function loggedInGreeting() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Why not sign up or log in :)'
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/login' },
+          'Log In'
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/signup' },
+          'Sign Up'
+        )
+      );
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var currentUser = this.props.currentUser;
-
-      if (currentUser) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Welcome, ',
-            currentUser.username
-          ),
-          _react2.default.createElement(
-            'button',
-            { onClick: this.logoutUser },
-            'Log Out'
-          )
-        );
+      if (this.props.currentUser) {
+        return this.loggedOutGreeting();
       } else {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Why not sign up or log in :)'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/login' },
-            'Log In'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/signup' },
-            'Sign Up'
-          )
-        );
+        return this.loggedInGreeting();
       }
     }
   }]);

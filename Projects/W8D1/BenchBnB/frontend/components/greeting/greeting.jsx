@@ -5,29 +5,38 @@ class Greeting extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
+    this.loggedOutGreeting = this.loggedOutGreeting.bind(this)
+    this.loggedInGreeting = this.loggedInGreeting.bind(this)
   }
 
   logoutUser() {
     this.props.logout();
   }
 
+  loggedOutGreeting() {
+    return (
+      <div>
+        <h1>Welcome, {this.props.currentUser.username}</h1>
+        <button onClick={this.logoutUser}>Log Out</button>
+      </div>
+    )
+  }
+
+  loggedInGreeting() {
+    return (
+      <div>
+        <h1>Why not sign up or log in :)</h1>
+        <Link to='/login'>Log In</Link>
+        <Link to='/signup'>Sign Up</Link>
+      </div>
+    )
+  }
+
   render() {
-    const { currentUser } = this.props;
-    if (currentUser) {
-      return (
-        <div>
-          <h1>Welcome, {currentUser.username}</h1>
-          <button onClick={this.logoutUser}>Log Out</button>
-        </div>
-      )
+    if (this.props.currentUser) {
+      return this.loggedOutGreeting();
     } else {
-      return (
-        <div>
-          <h1>Why not sign up or log in :)</h1>
-          <Link to='/login'>Log In</Link>
-          <Link to='/signup'>Sign Up</Link>
-        </div>
-      )
+      return this.loggedInGreeting();
     }
   }
 
