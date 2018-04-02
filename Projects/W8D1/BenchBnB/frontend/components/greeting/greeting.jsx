@@ -5,8 +5,6 @@ class Greeting extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
-    this.loggedOutGreeting = this.loggedOutGreeting.bind(this)
-    this.loggedInGreeting = this.loggedInGreeting.bind(this)
   }
 
   logoutUser() {

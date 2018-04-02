@@ -29984,8 +29984,6 @@ var Greeting = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Greeting.__proto__ || Object.getPrototypeOf(Greeting)).call(this, props));
 
     _this.logoutUser = _this.logoutUser.bind(_this);
-    _this.loggedOutGreeting = _this.loggedOutGreeting.bind(_this);
-    _this.loggedInGreeting = _this.loggedInGreeting.bind(_this);
     return _this;
   }
 
