@@ -1,9 +1,9 @@
-import { RECEIVE_CURRENT_USER } from '../action/session_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 const _defaultCurrentUser = Object.freeze({ currentUser: null });
 
-const SessionReducer = (oldState = _defaultCurrentUser, action) => {
+const sessionReducer = (oldState = _defaultCurrentUser, action) => {
   Object.freeze(oldState);
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
@@ -13,4 +13,4 @@ const SessionReducer = (oldState = _defaultCurrentUser, action) => {
   }
 };
 
-export default SessionReducer;
+export default sessionReducer;
