@@ -30563,72 +30563,82 @@ var BenchIndex = function (_React$Component) {
   }
 
   _createClass(BenchIndex, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBenches();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
 
       if (this.props.benches.length == 0) {
         return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement('br', null),
-          'Loading...'
+          "div",
+          { "class": "sk-circle" },
+          _react2.default.createElement("div", { "class": "sk-circle1 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle2 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle3 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle4 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle5 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle6 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle7 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle8 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle9 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle10 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle11 sk-child" }),
+          _react2.default.createElement("div", { "class": "sk-circle12 sk-child" })
         );
       }
 
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'h2',
+          "h2",
           null,
-          'Muh Benches'
+          "Muh Benches"
         ),
         _react2.default.createElement(
-          'ul',
+          "ul",
           null,
           this.props.benches.map(function (bench) {
             return _react2.default.createElement(
-              'div',
+              "div",
               { key: bench.id },
               _react2.default.createElement(
-                'li',
+                "li",
                 null,
                 _react2.default.createElement(
-                  'strong',
+                  "strong",
                   null,
-                  'Description:'
+                  "Description:"
                 ),
-                ' ',
+                " ",
                 bench.description
               ),
               _react2.default.createElement(
-                'li',
+                "li",
                 null,
                 _react2.default.createElement(
-                  'strong',
+                  "strong",
                   null,
-                  'Longitude:'
+                  "Longitude:"
                 ),
-                ' ',
+                " ",
                 bench.longitude
               ),
               _react2.default.createElement(
-                'li',
+                "li",
                 null,
                 _react2.default.createElement(
-                  'strong',
+                  "strong",
                   null,
-                  'Latitude:'
+                  "Latitude:"
                 ),
-                ' ',
+                " ",
                 bench.latitude
               ),
-              _react2.default.createElement('br', null)
+              _react2.default.createElement("br", null)
             );
           })
         )
